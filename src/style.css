@@ -3,3 +3,19 @@
   font-family: "Original Surfer", cursive;
   font-weight: 800;
 }
+
+.bold-text {
+  font-weight: bold;
+}
+
+.bg-gray {
+  background-color: #8a8581;
+}
+
+.col-white {
+  color: white;
+}
+
+.h-100-vh {
+  height: 89.5vh;
+}
