@@ -2,6 +2,11 @@
   font-size: 50px;
   font-family: "Original Surfer", cursive;
   font-weight: 800;
+  transition: letter-spacing 1s;
+}
+
+.title-txt:hover {
+  letter-spacing: 4px;
 }
 
 .bold-text {
@@ -9,7 +14,7 @@
 }
 
 .bg-gray {
-  background-color: #8a8581;
+  background-color: #ebebeb;
 }
 
 .col-white {
@@ -18,4 +23,16 @@
 
 .h-100-vh {
   height: 89.5vh;
+}
+
+.add-btn {
+  border: none;
+  padding: 5px 9px;
+  background-color: inherit;
+}
+
+.add-btn:hover {
+  background-color: rgb(175, 173, 173);
+  border-radius: 3px;
+  transition: background-color 1s;
 }
