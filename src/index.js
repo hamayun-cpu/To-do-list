@@ -3,13 +3,20 @@ import './tabs';
 import './side_bar'
 import './form_project'
 
-const projectnames = [];
+
+// make deafult projec
+let storedNames = JSON.parse(localStorage.getItem('projectnames'));
+if(storedNames === null || storedNames.length === 0) {
+  storedNames = [];
+  storedNames.push('deafult');
+  localStorage.setItem('projectnames', JSON.stringify(storedNames));
+}
 
 const addProject = document.getElementById('add-project');
 const formProject = document.getElementById('project-form');
 const addProjectBtn = document.getElementById('ad-proj');
 
-//helperfuntion
+//helperfuntions--------------------------
 const displayProjectForm = () => {
   formProject.classList.remove('dis-none');
 }
@@ -19,13 +26,18 @@ const hideProjectForm = () => {
   }
 }
 
+//eventListeners-----------------------------
 addProject.addEventListener('click', () => {
   displayProjectForm();
 });
 
-addProjectBtn.addEventListener('submit', (e) => {
-  e.preventDefault();
+addProjectBtn.addEventListener('click', (e) => {
   const name = document.getElementById('proj-name').value;
-  projectnames.push(name);
-  console.log(projectnames);
+
+  if(name !== '') {
+    hideProjectForm();
+    storedNames.push(name);
+    localStorage.setItem('projectnames', JSON.stringify(storedNames));
+  }
+  
 });
