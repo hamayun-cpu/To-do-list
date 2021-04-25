@@ -17,6 +17,10 @@
   background-color: #ebebeb;
 }
 
+.permanent-back-gray {
+  background-color: rgb(175, 173, 173) !important;
+}
+
 .col-white {
   color: white;
 }
@@ -39,4 +43,8 @@
 
 .dis-none {
   display: none !important;
+}
+
+.cur-pointer {
+  cursor: pointer;
 }
