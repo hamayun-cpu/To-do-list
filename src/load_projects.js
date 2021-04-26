@@ -6,7 +6,7 @@ const load_projects = () => {
     const project = document.createElement('div');
     project.id = `project-${i}`;
     project.className = 'add-btn cur-pointer bold-text d-flex justify-content-between';
-    project.innerHTML = `${projects[i]} <input id = 'del-project-${i}' class = 'cross dis-none' type="submit" value="x">`;
+    project.innerHTML = `<div><i class="fas fa-th-list"></i> ${projects[i]}</div> <input id = 'del-project-${i}' class = 'cross dis-none' type="submit" value="x">`;
     container.appendChild(project);
   }
 };
