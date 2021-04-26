@@ -5,13 +5,20 @@ import './form_project'
 import load_projects from './load_projects'
 import loadProjectTodos from './load_project_todos'
 
+//factory funtions
+const createProject = (name) => {
+  return {
+    name
+  };
+}
 
 
 // make deafult project
 let storedNames = JSON.parse(localStorage.getItem('projectnames'));
 if(storedNames === null || storedNames.length === 0) {
   storedNames = [];
-  storedNames.push('default');
+  const def = createProject('default');
+  storedNames.push(def);
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
 }
 
@@ -84,7 +91,8 @@ addProjectBtn.addEventListener('click', (e) => {
 
   if(name !== '') {
     hideProjectForm();
-    storedNames.push(name);
+    const def = createProject(name);
+    storedNames.push(def);
     localStorage.setItem('projectnames', JSON.stringify(storedNames));
   } else {
     e.preventDefault();
