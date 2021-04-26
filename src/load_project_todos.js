@@ -4,7 +4,7 @@ const loadProjectTodos = (storedNames) => {
     
     const newd = document.createElement('div');
     newd.id = `name-${i}`;
-    newd.innerHTML = `${storedNames[i]} is project opened`;
+    newd.innerHTML = `<h1 class = 'bold-text ml-2 mt-3'>${storedNames[i]}</h1>`;
     newd.className = 'dis-none';
     d.appendChild(newd);
   }

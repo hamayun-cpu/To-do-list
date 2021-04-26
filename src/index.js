@@ -11,7 +11,7 @@ import loadProjectTodos from './load_project_todos'
 let storedNames = JSON.parse(localStorage.getItem('projectnames'));
 if(storedNames === null || storedNames.length === 0) {
   storedNames = [];
-  storedNames.push('deafult');
+  storedNames.push('default');
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
 }
 
