@@ -4,20 +4,16 @@ import './side_bar'
 import './form_project'
 import load_projects from './load_projects'
 import loadProjectTodos from './load_project_todos'
-
+import * as factoryFuntions from './factory_funtions'
 //factory funtions
-const createProject = (name) => {
-  return {
-    name
-  };
-}
+
 
 
 // make deafult project
 let storedNames = JSON.parse(localStorage.getItem('projectnames'));
 if(storedNames === null || storedNames.length === 0) {
   storedNames = [];
-  const def = createProject('default');
+  const def = factoryFuntions.createProject('default');
   storedNames.push(def);
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
 }
@@ -91,7 +87,7 @@ addProjectBtn.addEventListener('click', (e) => {
 
   if(name !== '') {
     hideProjectForm();
-    const def = createProject(name);
+    const def = factoryFuntions.createProject(name);
     storedNames.push(def);
     localStorage.setItem('projectnames', JSON.stringify(storedNames));
   } else {
