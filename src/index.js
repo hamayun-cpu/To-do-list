@@ -5,6 +5,8 @@ import './form_project'
 import load_projects from './load_projects'
 import loadProjectTodos from './load_project_todos'
 
+
+
 // make deafult project
 let storedNames = JSON.parse(localStorage.getItem('projectnames'));
 if(storedNames === null || storedNames.length === 0) {
@@ -13,15 +15,25 @@ if(storedNames === null || storedNames.length === 0) {
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
 }
 
+
+
 // load all projects in left side bar
 load_projects();
 // load all projects todos and hide them by default
 loadProjectTodos(storedNames);
 
+
+
+
 // global varibales
 const addProject = document.getElementById('add-project');
 const formProject = document.getElementById('project-form');
 const addProjectBtn = document.getElementById('ad-proj');
+
+
+
+
+
 
 //helperfuntions--------------------------
 const displayProjectForm = () => {
@@ -51,6 +63,16 @@ const showOnlyThisProject = (number) => {
     }
   }
 }
+const deleteProject = (index) => {
+  storedNames.splice(index, 1);
+  localStorage.setItem('projectnames', JSON.stringify(storedNames));
+  location.reload();
+}
+
+
+
+
+
 
 //eventListeners-----------------------------
 addProject.addEventListener('click', () => {
@@ -71,8 +93,23 @@ addProjectBtn.addEventListener('click', (e) => {
 
 for (let i = 0; i < storedNames.length; i++) {
   const openedProject = document.getElementById(`project-${i}`);
+  const delProject = document.getElementById(`del-project-${i}`);
 
   openedProject.addEventListener('click', () => {
     showOnlyThisProject(i);
+  });
+
+  openedProject.addEventListener('mouseover', event => {
+    delProject.classList.remove('dis-none');
+  });
+  
+  openedProject.addEventListener('mouseout', event => {
+    if(!(delProject.classList.contains('dis-none'))) {
+      delProject.classList.add('dis-none');
+    }
+  });
+
+  delProject.addEventListener('click', () => {
+    deleteProject(i);
   });
 }

@@ -19,6 +19,7 @@
 
 .permanent-back-gray {
   background-color: rgb(175, 173, 173) !important;
+  border-radius: 4px;
 }
 
 .col-white {
@@ -47,4 +48,14 @@
 
 .cur-pointer {
   cursor: pointer;
+}
+
+.w-48 {
+  width: 48%;
+}
+
+.cross {
+  border: none;
+  background-color: red;
+  border-radius: 5px;
 }
