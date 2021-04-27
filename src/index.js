@@ -51,9 +51,11 @@ const showOnlyThisProject = (number) => {
   for (let i = 0; i < storedNames.length; i++) {
     const openedProject = document.getElementById(`name-${i}`);
     const openedProjectName = document.getElementById(`project-${i}`);
+    const taskButton = document.getElementById(`task-button-${i}`);
 
     if (i === number) {
       openedProject.classList.remove('dis-none');
+      taskButton.classList.remove('dis-none');
       if(!(openedProjectName.classList.contains('permanent-back-gray'))) {
         openedProjectName.classList.add('permanent-back-gray');
       }
@@ -61,6 +63,9 @@ const showOnlyThisProject = (number) => {
     else {
       if(!(openedProject.classList.contains('dis-none'))) {
         openedProject.classList.add('dis-none');
+      }
+      if(!(taskButton.classList.contains('dis-none'))) {
+        taskButton.classList.add('dis-none');
       }
       openedProjectName.classList.remove('permanent-back-gray');
     }
@@ -98,6 +103,7 @@ addProjectBtn.addEventListener('click', (e) => {
 for (let i = 0; i < storedNames.length; i++) {
   const openedProject = document.getElementById(`project-${i}`);
   const delProject = document.getElementById(`del-project-${i}`);
+  // const taskButton = document.getElementById(`task-button-${i}`);
 
   openedProject.addEventListener('click', () => {
     showOnlyThisProject(i);
@@ -116,4 +122,9 @@ for (let i = 0; i < storedNames.length; i++) {
   delProject.addEventListener('click', () => {
     deleteProject(i);
   });
+
+  // taskButton.addEventListener('click', () => {
+  //   showOnlyThisTaskButton(i,taskButton);
+  // });
+  
 }
