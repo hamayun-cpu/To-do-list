@@ -4,8 +4,7 @@ import './side_bar'
 import './form_project'
 import load_projects from './load_projects'
 import loadProjectTodos from './load_project_todos'
-import * as factoryFuntions from './factory_funtions'
-//factory funtions
+import {createProject,createList} from './factory_funtions'
 
 
 
@@ -13,8 +12,9 @@ import * as factoryFuntions from './factory_funtions'
 let storedNames = JSON.parse(localStorage.getItem('projectnames'));
 if(storedNames === null || storedNames.length === 0) {
   storedNames = [];
-  const def = factoryFuntions.createProject('default');
-  def.addToDo('def','def','def','def');
+  const def = createProject('default');
+  const list = createList('def1','def2','def3','def4');
+  def.todos.push(list);
   storedNames.push(def);
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
 }
@@ -95,15 +95,20 @@ const hideTodoForm = () => {
   }
 }
 const addTodoToProject = (title,decription,date,priority) => {
-  alert('hi');
-  for(let i =0; i < storedNames.length; i++) {
-    const openedProject = docunment.getElementById(`name-${i}`);
-    if (!(openedProject.classList.contains('dis-none'))) {
-      storedNames[i].addToDo(title,decription,date,priority);
+ 
+  for(let i = 0; i < storedNames.length; i++) {
+    const op = document.getElementById(`name-${i}`);
+    if (!(op.classList.contains('dis-none'))) {
+
+      const openedObject = storedNames[i];
+      const list = createList(title,decription,date,priority);
+      openedObject.todos.push(list);
+
       localStorage.setItem('projectnames', JSON.stringify(storedNames));
       break;
     }
   }
+  location.reload();
 }
 
 
@@ -120,7 +125,7 @@ addProjectBtn.addEventListener('click', (e) => {
 
   if(name !== '') {
     hideProjectForm();
-    const def = factoryFuntions.createProject(name);
+    const def = createProject(name);
     storedNames.push(def);
     localStorage.setItem('projectnames', JSON.stringify(storedNames));
   } else {
@@ -159,7 +164,8 @@ for (let i = 0; i < storedNames.length; i++) {
 }
 
 
-addTaskBtn.addEventListener('click', () => {
+addTaskBtn.addEventListener('click', (e) => {
+  e.preventDefault();
   const title = document.getElementById('todo-title').value;
   const decription = document.getElementById('todo-description').value;
   const date = document.getElementById('todo-date').value;
@@ -168,7 +174,5 @@ addTaskBtn.addEventListener('click', () => {
   if(title !== '' && decription !== '' && date !== '' && priority !== '') {
     hideTodoForm();
     addTodoToProject(title,decription,date,priority);
-  } else {
-    e.preventDefault();
   }
 });
