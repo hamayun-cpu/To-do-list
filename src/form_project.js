@@ -7,7 +7,7 @@ const formForProject = (() => {
     <form>
       <input id = 'proj-name' class = 'form-control' type='text' name = 'proj-name' placeholder="Project name..">
       <input id = 'ad-proj' class = 'btn btn-primary my-1 w-48' type="submit" value="Add">
-      <input class = 'btn btn-danger w-50' type="submit" value="Cancel">
+      <input id = 'cancelProject' class = 'btn btn-danger w-50' type="submit" value="Cancel">
     </form>
   `;
 

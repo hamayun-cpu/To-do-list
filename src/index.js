@@ -7,13 +7,12 @@ import loadProjectTodos from './load_project_todos'
 import {createProject,createList} from './factory_funtions'
 
 
-
 // make deafult project
 let storedNames = JSON.parse(localStorage.getItem('projectnames'));
 if(storedNames === null || storedNames.length === 0) {
   storedNames = [];
   const def = createProject('default');
-  const list = createList('def1','def2','def3','def4');
+  const list = createList('title','description','dueDate','priority');
   def.todos.push(list);
   storedNames.push(def);
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
@@ -34,8 +33,8 @@ const addProject = document.getElementById('add-project');
 const formProject = document.getElementById('project-form');
 const addProjectBtn = document.getElementById('ad-proj');
 const addTaskBtn = document.getElementById('add-todo');
-
-
+const cancelTodo = document.getElementById('cancel');
+const cancelProject = document.getElementById('cancelProject');
 
 
 
@@ -49,6 +48,7 @@ const hideProjectForm = () => {
   }
 }
 const showOnlyThisProject = (number) => {
+  hideTodoForm();
   for (let i = 0; i < storedNames.length; i++) {
     const openedProject = document.getElementById(`name-${i}`);
     const openedProjectName = document.getElementById(`project-${i}`);
@@ -160,6 +160,16 @@ for (let i = 0; i < storedNames.length; i++) {
     const formTodo = document.getElementById('todo-form');
     formTodo.classList.remove('dis-none');
   });
+
+  for (let j=0; j < storedNames[i].todos.length; j++) {
+    const del = document.getElementById(`delete-${i}-${j}`);
+
+    del.addEventListener('click', () => {
+      storedNames[i].todos.splice(j,1);
+      localStorage.setItem('projectnames', JSON.stringify(storedNames));
+      location.reload();
+    });
+  } 
   
 }
 
@@ -175,4 +185,12 @@ addTaskBtn.addEventListener('click', (e) => {
     hideTodoForm();
     addTodoToProject(title,decription,date,priority);
   }
+});
+
+cancelTodo.addEventListener('click', () => {
+  hideTodoForm();
+});
+
+cancelProject.addEventListener('click', () => {
+  hideProjectForm();
 });
