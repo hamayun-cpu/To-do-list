@@ -48,7 +48,6 @@ const hideProjectForm = () => {
   }
 }
 const showOnlyThisProject = (number) => {
-  hideTodoForm();
   for (let i = 0; i < storedNames.length; i++) {
     const openedProject = document.getElementById(`name-${i}`);
     const openedProjectName = document.getElementById(`project-${i}`);
@@ -94,21 +93,33 @@ const hideTodoForm = () => {
     form.classList.add('dis-none');
   }
 }
-const addTodoToProject = (title,decription,date,priority) => {
- 
+const whichActive = () => {
   for(let i = 0; i < storedNames.length; i++) {
     const op = document.getElementById(`name-${i}`);
     if (!(op.classList.contains('dis-none'))) {
-
-      const openedObject = storedNames[i];
-      const list = createList(title,decription,date,priority);
-      openedObject.todos.push(list);
-
-      localStorage.setItem('projectnames', JSON.stringify(storedNames));
-      break;
+      return i;
     }
   }
+}
+const addTodoToProject = (title,decription,date,priority) => {
+  const i = whichActive();
+  const openedObject = storedNames[i];
+  const list = createList(title,decription,date,priority);
+  openedObject.todos.push(list);
+  localStorage.setItem('projectnames', JSON.stringify(storedNames));
   location.reload();
+}
+const hideTodosOfProject = (i) => {
+  for(let j = 0; j < storedNames[i].todos.length; j++ ) {
+    const ele = document.getElementById(`task-${i}-${j}`);
+    ele.classList.add('dis-none'); 
+  }
+}
+const showTodosOfProject = (i) => {
+  for(let j = 0; j < storedNames[i].todos.length; j++ ) {
+    const ele = document.getElementById(`task-${i}-${j}`);
+    ele.classList.remove('dis-none'); 
+  }
 }
 
 
@@ -139,6 +150,7 @@ for (let i = 0; i < storedNames.length; i++) {
   const taskButton = document.getElementById(`task-button-${i}`);
 
   openedProject.addEventListener('click', () => {
+    hideTodoForm();
     showOnlyThisProject(i);
   });
 
@@ -159,6 +171,8 @@ for (let i = 0; i < storedNames.length; i++) {
   taskButton.addEventListener('click', () => {
     const formTodo = document.getElementById('todo-form');
     formTodo.classList.remove('dis-none');
+    const l = whichActive();
+    hideTodosOfProject(l);
   });
 
   for (let j=0; j < storedNames[i].todos.length; j++) {
@@ -187,10 +201,14 @@ addTaskBtn.addEventListener('click', (e) => {
   }
 });
 
-cancelTodo.addEventListener('click', () => {
+cancelTodo.addEventListener('click', (e) => {
+  e.preventDefault();
   hideTodoForm();
+  const j = whichActive();
+  showTodosOfProject(j);
 });
 
-cancelProject.addEventListener('click', () => {
+cancelProject.addEventListener('click', (e) => {
+  e.preventDefault();
   hideProjectForm();
 });
