@@ -24,7 +24,10 @@ const loadProjectTodos = (storedNames) => {
           <p class="card-text">${storedNames[i].todos[j].description}</p>
           <span class="card-link bold-text">${storedNames[i].todos[j].dueDate}</span>
           <span class="card-link bold-text">${storedNames[i].todos[j].priority}</span> <br>
-          <input id = 'delete-${i}-${j}' class = 'btn btn-danger w-50 mt-3' type="submit" value="Delete">
+          <div class = 'd-flex  mt-3'>
+            <input id = 'edit-${i}-${j}' class = 'btn btn-primary w-50 mr-2' type="submit" value="Edit">
+            <input id = 'delete-${i}-${j}' class = 'btn btn-danger w-50' type="submit" value="Delete">
+          </div>
         </div>
       `;
       d.appendChild(newTodo);
@@ -39,7 +42,7 @@ const loadProjectTodos = (storedNames) => {
         <input id = 'todo-title' class = 'form-control' type='text' name='todo-title' placeholder='title..'>
         <input id = 'todo-description' class = 'form-control' type='text' name='todo-description' placeholder='description..'>
         <input id = 'todo-date' class = 'form-control' type='text' name='todo-date' placeholder='due-date..'>
-        <input id = 'todo-priority' class = 'form-control' type='text' name='todo-priority' placeholder='priority'>
+        <input id = 'todo-priority' class = 'form-control' type='text' name='todo-priority' placeholder='priority..'>
         <input id = 'add-todo' class = 'btn btn-primary my-1 w-48' type='submit' value='Add'>
         <input id = 'cancel' class = 'btn btn-danger w-50' type = 'submit' value = 'Cancel'>
       </form>

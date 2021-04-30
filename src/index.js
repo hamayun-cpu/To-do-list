@@ -35,6 +35,8 @@ const addProjectBtn = document.getElementById('ad-proj');
 const addTaskBtn = document.getElementById('add-todo');
 const cancelTodo = document.getElementById('cancel');
 const cancelProject = document.getElementById('cancelProject');
+let isEditButtonPressed = false;
+const editStack = [];
 
 
 
@@ -102,10 +104,20 @@ const whichActive = () => {
   }
 }
 const addTodoToProject = (title,decription,date,priority) => {
-  const i = whichActive();
-  const openedObject = storedNames[i];
-  const list = createList(title,decription,date,priority);
-  openedObject.todos.push(list);
+  if(isEditButtonPressed) {
+    const j = editStack.pop();
+    const i = editStack.pop();
+    storedNames[i].todos[j].title = title;
+    storedNames[i].todos[j].description = decription;
+    storedNames[i].todos[j].dueDate = date;
+    storedNames[i].todos[j].priority = priority;
+    isEditButtonPressed = false;
+  } else {
+    const i = whichActive();
+    const openedObject = storedNames[i];
+    const list = createList(title,decription,date,priority);
+    openedObject.todos.push(list);
+  }
   localStorage.setItem('projectnames', JSON.stringify(storedNames));
   location.reload();
 }
@@ -120,6 +132,12 @@ const showTodosOfProject = (i) => {
     const ele = document.getElementById(`task-${i}-${j}`);
     ele.classList.remove('dis-none'); 
   }
+}
+const showTodoForm = () => {
+  const formTodo = document.getElementById('todo-form');
+  formTodo.classList.remove('dis-none');
+  const l = whichActive();
+  hideTodosOfProject(l);
 }
 
 
@@ -169,19 +187,32 @@ for (let i = 0; i < storedNames.length; i++) {
   });
 
   taskButton.addEventListener('click', () => {
-    const formTodo = document.getElementById('todo-form');
-    formTodo.classList.remove('dis-none');
-    const l = whichActive();
-    hideTodosOfProject(l);
+    showTodoForm();
   });
 
   for (let j=0; j < storedNames[i].todos.length; j++) {
     const del = document.getElementById(`delete-${i}-${j}`);
+    const edit = document.getElementById(`edit-${i}-${j}`);
 
     del.addEventListener('click', () => {
       storedNames[i].todos.splice(j,1);
       localStorage.setItem('projectnames', JSON.stringify(storedNames));
       location.reload();
+    });
+
+    edit.addEventListener('click', () => {
+      isEditButtonPressed = true;
+      editStack.push(i);
+      editStack.push(j);
+      const title = storedNames[i].todos[j].title;
+      const decription = storedNames[i].todos[j].description;
+      const date = storedNames[i].todos[j].dueDate;
+      const priority = storedNames[i].todos[j].priority;
+      showTodoForm();
+      document.getElementById('todo-title').value = title;
+      document.getElementById('todo-description').value = decription;
+      document.getElementById('todo-date').value = date;
+      document.getElementById('todo-priority').value = priority;
     });
   } 
   
@@ -204,8 +235,16 @@ addTaskBtn.addEventListener('click', (e) => {
 cancelTodo.addEventListener('click', (e) => {
   e.preventDefault();
   hideTodoForm();
-  const j = whichActive();
-  showTodosOfProject(j);
+  if(isEditButtonPressed) {
+    editStack.pop();
+    const i = editStack.pop();
+    showTodosOfProject(i);
+    isEditButtonPressed = false;
+  } else {
+    const j = whichActive();
+    showTodosOfProject(j);
+  }
+  
 });
 
 cancelProject.addEventListener('click', (e) => {
