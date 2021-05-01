@@ -1,7 +1,7 @@
 const loadProjectTodos = (storedNames) => {
   const d = document.getElementById('right-container');
 
-  for (let i = 0; i < storedNames.length; i++) {
+  for (let i = 0; i < storedNames.length; i += 1) {
     const newd = document.createElement('div');
     newd.id = `name-${i}`;
     newd.innerHTML = `<h1 class = 'bold-text ml-3 mt-3'>${storedNames[i].name}</h1>`;
@@ -10,11 +10,11 @@ const loadProjectTodos = (storedNames) => {
 
     const newT = document.createElement('div');
     newT.id = `task-button-${i}`;
-    newT.innerHTML = `<button id = 'add-task' class = 'add-btn cur-pointer w-100 my-2 text-center'><i class='fas fa-plus mr-2'></i> Add Task</button>`;
+    newT.innerHTML = '<button id = \'add-task\' class = \'add-btn cur-pointer w-100 my-2 text-center\'><i class=\'fas fa-plus mr-2\'></i> Add Task</button>';
     newT.className = 'dis-none';
     d.appendChild(newT);
 
-    for (let j = 0; j < storedNames[i].todos.length; j++) {
+    for (let j = 0; j < storedNames[i].todos.length; j += 1) {
       const newTodo = document.createElement('div');
       newTodo.className = 'dis-none card col-4 mx-auto my-2';
       newTodo.id = `task-${i}-${j}`;
@@ -35,9 +35,9 @@ const loadProjectTodos = (storedNames) => {
   }
 
   const form = document.createElement('div');
-    form.id = 'todo-form';
-    form.classList = 'dis-none w-50 m-auto';
-    form.innerHTML = `
+  form.id = 'todo-form';
+  form.classList = 'dis-none w-50 m-auto';
+  form.innerHTML = `
       <form>
         <input id = 'todo-title' class = 'form-control' type='text' name='todo-title' placeholder='title..'>
         <input id = 'todo-description' class = 'form-control' type='text' name='todo-description' placeholder='description..'>
@@ -47,8 +47,8 @@ const loadProjectTodos = (storedNames) => {
         <input id = 'cancel' class = 'btn btn-danger w-50' type = 'submit' value = 'Cancel'>
       </form>
     `;
-  
-    d.appendChild(form);
-}
+
+  d.appendChild(form);
+};
 
 export default loadProjectTodos;

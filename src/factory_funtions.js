@@ -1,8 +1,6 @@
-const createList = (title,description,dueDate,priority) => {
-  return {
-    title,description,dueDate,priority
-  };
-}
+const createList = (title, description, dueDate, priority) => ({
+  title, description, dueDate, priority,
+});
 
 const createProject = (name) => {
   const todos = [];
@@ -11,8 +9,8 @@ const createProject = (name) => {
   //   todos.push(list);
   // }
   return {
-    name,todos
+    name, todos,
   };
-}
+};
 
-export {createProject,createList}
+export { createProject, createList };

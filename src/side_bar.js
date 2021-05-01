@@ -1,7 +1,7 @@
-const side_bar = (() => {
+const sideBar = (() => {
   const parent = document.getElementById('content');
 
-  const container = document.createElement('div')
+  const container = document.createElement('div');
   container.className = 'container-fluid';
 
   container.innerHTML = `
@@ -14,7 +14,7 @@ const side_bar = (() => {
     </div>
   `;
 
-  parent.appendChild(container);  
+  parent.appendChild(container);
 })();
 
-export default side_bar;
+export default sideBar;

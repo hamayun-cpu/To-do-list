@@ -8,7 +8,7 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-  contentBase: './dist',
+    contentBase: './dist',
   },
   module: {
     rules: [
@@ -16,9 +16,9 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          'css-loader'
-        ]
-      }
-    ]
+          'css-loader',
+        ],
+      },
+    ],
   },
 };
