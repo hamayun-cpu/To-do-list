@@ -1,0 +1,37 @@
+{
+  "name": "to-do-list",
+  "version": "1.0.0",
+  "description": "I Built a to-do list that will allow the user to insert new tasks into existing projects and also create new projects and assigned new tasks. It gives back due date of event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development",
+    "build": "webpack --mode production",
+    "start": "webpack-dev-server --mode development --open",
+    "start:dev": "webpack-dev-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hamayun-cpu/To-do-list.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hamayun-cpu/To-do-list/issues"
+  },
+  "homepage": "https://github.com/hamayun-cpu/To-do-list#readme",
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "css-loader": "^5.2.4",
+    "eslint": "^7.25.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "style-loader": "^2.0.0",
+    "stylelint": "^13.13.0",
+    "stylelint-config-standard": "^21.0.0",
+    "stylelint-csstree-validator": "^1.9.0",
+    "stylelint-scss": "^3.19.0",
+    "webpack": "^5.35.0",
+    "webpack-cli": "^4.6.0"
+  }
+}

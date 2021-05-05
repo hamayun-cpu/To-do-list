@@ -1,0 +1,61 @@
+.title-txt {
+  font-size: 50px;
+  font-family: "Original Surfer", cursive;
+  font-weight: 800;
+  transition: letter-spacing 1s;
+}
+
+.title-txt:hover {
+  letter-spacing: 4px;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+
+.bg-gray {
+  background-color: #ebebeb;
+}
+
+.permanent-back-gray {
+  background-color: rgb(175, 173, 173) !important;
+  border-radius: 4px;
+}
+
+.col-white {
+  color: white;
+}
+
+.h-100-vh {
+  height: 89.5vh;
+}
+
+.add-btn {
+  border: none;
+  padding: 5px 9px;
+  background-color: inherit;
+}
+
+.add-btn:hover {
+  background-color: rgb(175, 173, 173);
+  border-radius: 3px;
+  transition: background-color 1s;
+}
+
+.dis-none {
+  display: none !important;
+}
+
+.cur-pointer {
+  cursor: pointer;
+}
+
+.w-48 {
+  width: 48%;
+}
+
+.cross {
+  border: none;
+  background-color: red;
+  border-radius: 5px;
+}
